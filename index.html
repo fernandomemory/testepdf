@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>repl.it</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <body onload="bodyLoad(2)" data-globalelemcounter="7" data-examversion="9" data-numvisibleelemsonimg="3" data-numdentesmarcados="0">      
+        <div id="divDPI" style="width:1in"></div>                <div id="divPrintOptions" style="display:none;">
+                    <table id="tablePrintOptions">
+                        <tbody><tr style="height : 25px;">
+                            <td colspan="3" align="center">
+                                <b><span style="position:relative; left:-4px;top:5px">Opções de impressão</span></b>
+                                <img id="imgPrint" align="right" src="data:image/gif;base64,R0lGODlhFgAWAJEAAAAAAP///////wAAACH5BAEAAAIALAAAAAAWABYAAAI1lI+py+0PIwK0Umktztdd/gFLJYAimaCMepim4oJwnM1iwxrkm+snXLrhZBFha8ORKJfMRwEAOw==">
+                                <div id="divNotaPrintConf">
+                                    <p style="font-size:14px">Impressão - Clique para imprimir ...</p>
+                                    <p style="margin-top:8px"><strong>[Importante]</strong> Na próxima página (inclusive na seção "Mais definições"), não esqueça de ajustar algumas 
+                                    configurações do navegador/browser (para que o relatório seja impresso corretamente):</p>
+                                    <ul style="margin:8px">
+                                        <li><strong>Tamanho do papel:</strong> tamanho escolhido aqui - A4 é o padrão</li>
+                                        <li><strong>Margens:</strong> nenhuma (vai usar as margens definidas aqui)</li>
+                                        <li><strong>Cabeçalho e rodapé:</strong> remover (vai usar cabeçalho e rodapé definidos aqui)</li>
+                                    </ul>
+                                </div>                                               
+                            </td>
+                        </tr>
+                        <tr class="configSpaceH"><td colspan="3"><hr></td></tr>
+                        <tr>
+                            <td>Tipo</td>
+                            <td class="configSpaceW"></td>
+                            <td>
+                                <select id="selTipoPrint" style="width:100px">
+                                    <option value="0">Resumo</option>
+                                    <option value="1">Relatório</option>
+                                    <option value="2">Tam. natural</option>
+                                </select>                
+                            </td>
+                        </tr>        
+                        <tr class="configSpaceH"><td colspan="3"><hr></td></tr>
+                        <tr>
+                            <td>Mostrar</td>
+                            <td class="configSpaceW"></td>
+                            <td>
+                                <form id="mostrarPrintItems">
+                                    <input id="ckShowCab" type="checkbox" checked="checked">Cabeçalho<br>
+                                    <div style="position:relative; left:15px;">
+                                        <input id="ckShowFotoPac" type="checkbox" checked="checked">Foto pac.<br>
+                                        <input id="ckShowLogo" type="checkbox" checked="checked">Logomarca<br>
+                                        <input id="ckShowClinica" type="checkbox" checked="checked">Clínica<br>
+                                        <input id="ckShowTipoExame" type="checkbox" checked="checked">Tipo exame<br>
+                                    </div>
+                                    <input id="ckShowImgRelat" type="checkbox" checked="checked">Imagem<br>
+                                    <div style="position:relative; left:15px;">
+                                        <input id="ckShowElems" type="checkbox" checked="checked">Marcações<br>
+                                        <input id="ckShowImgBorder" type="checkbox" checked="checked">Moldura<br>
+                                    </div>
+                                    <input id="ckShowAss" type="checkbox" checked="checked">Assinatura<br>
+                                    <input id="ckShowRod" type="checkbox" checked="checked">Rodapé<br>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr class="configSpaceH"><td colspan="3"><hr></td></tr>
+                        <tr>
+                            <td>Tamanho<br>(Imagens)</td>
+                            <td class="configSpaceW"></td>
+                            <td>
+                                <span id="spanTamImgRelat" align="right" title="Altera o tamanho da imagem/odontograma na impressão.">[100%] Img/Odt.</span><br>
+                                <input id="rgTamImgRelat" class="rgPrint" type="range" min="1" max="4" value="4" step="1"><br>
+                                <span id="spanTamAss" title="Altera o tamanho da assinatura  na impressão.">[100%] Ass.</span><br>
+                                <input id="rgTamAss" class="rgPrint" type="range" min="1" max="4" value="4" step="1">
+                            </td>
+                        </tr>
+                        <tr class="configSpaceH"><td colspan="3"><hr></td></tr>
+                        <tr>
+                            <td>Papel</td>
+                            <td class="configSpaceW"></td>
+                            <td>
+                                <select id="selPageType" style="width:100px">
+                                    <option value="0">A4</option>
+                                    <option value="2">Carta</option>
+                                    <option value="1">Personal.</option>
+                                </select><br>            
+                                <input style="width:40px; margin-top:1px" type="text" id="edPageH" disabled="">
+                                <span>(mm) Alt.</span><br>            
+                                <input style="width:40px;" type="text" id="edPageW" disabled="">
+                                <span>(mm) Larg.</span><br>
+                                <input type="button" style="width:100px; margin-top:1px" value="Aplicar" id="btPageSizeOK" title="Aplica as alterações de Altura e Largura no tipo [Personalizado]" disabled="">
+                                
+                            </td>
+                        </tr>
+                        <tr class="configSpaceH"><td colspan="3"><hr></td></tr>
+                        <tr>
+                            <td>Margens</td>
+                            <td class="configSpaceW"></td>
+                            <td>
+                                <span id="spanMarginTop">[10mm] Superior</span><br>            
+                                <input id="rgMarginTop" class="rgPrint" type="range" min="0" max="40" value="10" step="1"><br>
+                                <span id="spanMarginBottom">[20mm] Inferior</span><br>            
+                                <input id="rgMarginBottom" class="rgPrint" type="range" min="0" max="40" value="20" step="1"><br>
+                                <span id="spanMarginLeft">[10mm] Esquerda</span><br>            
+                                <input id="rgMarginLeft" class="rgPrint" type="range" min="0" max="40" value="10" step="1"><br>
+                                <span id="spanMarginRight">[10mm] Direita</span><br>            
+                                <input id="rgMarginRight" class="rgPrint" type="range" min="0" max="40" value="10" step="1"><br>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </div>        <div id="divScreenRelat" align="center" class="page">
+            <div id="divInnerPage">
+                <div id="divCab" style="position:relative; margin:0px 0px 10px 0px; padding:0px;">                
+                    <table id="tbCab" width="100%">
+                        <tbody>
+                            <tr><td align="center" colspan="6"><span contenteditable="true" id="spanCabClinica">Exemplo 1</span></td></tr>
+                            <tr><td height="5" colspan="6"></td></tr>
+                            <tr><td align="center" colspan="6"><span contenteditable="true" id="spanCabTipoExame">Laudo radiográfico - online</span></td></tr>
+                            <tr><td height="15" colspan="6"></td></tr>
+                            <tr>
+                                <td id="tdFotoPacSpace" rowspan="3"></td>
+                                <td colspan="3"><span class="dadosCabBold">Paciente: <span class="dadosCab" id="spanCabNomePac">Novo Dentista</span></span></td>                            
+                                <td class="tdCabSmall" id="tdOS"><span class="dadosCabBold">OS: <span class="dadosCab" id="spanCabOS"></span></span></td>                            
+                                <td id="tdLogoSpace" rowspan="3"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3"><span class="dadosCabBold">Nasc. [idade]: <span class="dadosCab" id="spanCabNascIdade">18/03/1992 [28a. 9m]</span></span></td>                            
+                                <td class="tdCabSmall"><span class="dadosCabBold">Sexo: <span class="dadosCab" id="spanCabSexo">Masculino</span></span></td>                            
+                            </tr>
+                            <tr>
+                                <td colspan="3"><span class="dadosCabBold">Doutor(a): <span class="dadosCab" id="spanCabIndic">Dentista Exemplo</span></span></td>                            
+                                <td class="tdCabSmall"><span class="dadosCabBold">Data: <span class="dadosCab" id="spanDataDoc">28/12/2020</span></span></td>                            
+                            </tr>
+                        </tbody>                
+                    </table>
+                    <div style="display:true;">
+                        <img id="imgFotoPac" onerror="imgCabLoad(event)" style="position:absolute; left:0px; top:0px; width:85px;" src="fotoPac.jpg">
+                        <img id="imgLogo" onerror="imgCabLoad(event)" style="position:absolute; top:0px; right:0px; width:90px;" src="logo.jpg">
+                    </div>
+                </div>   
+                <!--ILAUDO-->
+                <div id="divImg" style="position:relative;">
+                    <div id="divMolarClick">
+                        <img id="imgMolarSvg" class="molar" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8IS0tIENyZWF0b3I6IENvcmVsRFJBVyAtLT4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iODlweCIgaGVpZ2h0PSIxMDFweCIgc3R5bGU9InNoYXBlLXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IHRleHQtcmVuZGVyaW5nOmdlb21ldHJpY1ByZWNpc2lvbjsgaW1hZ2UtcmVuZGVyaW5nOm9wdGltaXplUXVhbGl0eTsgZmlsbC1ydWxlOmV2ZW5vZGQ7IGNsaXAtcnVsZTpldmVub2RkIg0Kdmlld0JveD0iMCAwIDg5IDEwMS4zNDEiDQogeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPg0KIDxkZWZzPg0KICA8c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KICAgPCFbQ0RBVEFbDQoNCiAgICAuZmlsMCB7DQogICAgICAgIGZpbGw6I0ZDRjRFMw0KICAgIH0gICAgICAgIA0KICAgIC5maWwxIHsNCiAgICAgICAgZmlsbDojOTE4QzcxOw0KICAgICAgICBmaWxsLW9wYWNpdHk6MC45MDE5NjE7DQogICAgfQ0KICAgXV0+DQogIDwvc3R5bGU+DQogPC9kZWZzPg0KIDxnIGlkPSJDYW1hZGFfeDAwMjBfMSI+DQogIDxtZXRhZGF0YSBpZD0iQ29yZWxDb3JwSURfMENvcmVsLUxheWVyIi8+DQogIDxnIGlkPSJkZW50ZTQ2Ij4NCiAgIDxwYXRoIGlkPSJfNDY5NTY5MjgiIGNsYXNzPSJmaWwwIiBkPSJNMTkuNzI0OCAxMC4zMTMzbDAgMy4wOTgzOWMwLDguODc2MjcgMi40NzE4MywxMS4wNzYzIDMuMDk3MiwxOC41ODU2bDcuNzQwNjMgMGM1LjI5OTY1LDAgMzEuOTg5LDYuODEyNjUgMzcuMTU2OSw5LjI5Mjc5IDMuMTA5MDcsLTQuNjQ1OCAxOC41NzczLC0xNy43OTA1IDE4LjU3NzMsLTIxLjY4NCAwLC0xMS4yNDM3IC0xMS4wMDYzLC0xNS40ODg0IC0yMS42NzQ1LC0xNS40ODg0IC01LjY0NzM1LDAgLTMuNjg4MTYsMS4zODk1OSAtMTAuNjU5OCwxLjYxMzg3bC0zLjI3NDAxIDEwLjc3NzMgLTMuNDI4MjggLTAuMDYyODkzMyAxLjg4MDg3IC0xMC43Nzg1Yy02LjE1MDQ5LC0wLjUxMjY0IC0zLjcyOTY5LC0xLjU0OTc5IC03Ljc0MTgxLC0xLjU0OTc5IC0yLjA0NDYzLDAgLTcuNzE4MDgsMi4zNDM2NyAtOS43MDMzNywzLjAxODg4bC0xLjEzMzI3IDcuODIzNjkgLTMuNDQwMTUgLTAuMDUxMDI2NyAxLjgzMjIxIC05LjA1MzA4IC02LjEzMjY5IC0xLjczODQ3Yy0xLjg3MTM3LDIuNzk1NzkgLTMuMDk3MiwyLjcyMzQgLTMuMDk3Miw2LjE5NTU5eiIvPg0KICAgPHBhdGggaWQ9Il80NTc3NDAzMiIgY2xhc3M9ImZpbDEiIGQ9Ik0zNS4yMDcyIDk1LjQ5OTRjLTIuNTQ0MjEsLTUuNDAxNzEgNi4xOTIwMywtMTEuODQwNiA2LjE5MjAzLC0yMC4xMzU0bDAgLTEyLjM5YzAsLTQuMTEyOTkgLTEuMjMwNTcsLTEyLjM5MTIgLTQuNjQzNDMsLTEyLjM5MTIgLTE2LjAzMTksMCAtMTguODM5NSwzOS4xMzE1IC0zMi41MTIzLDQwLjI2OTVsMCAtNy43NDQxOWMwLC0yMi40NTI5IDE2LjYxMSwtMjkuMTc4OSAxNy4wMjk5LC00OC4wMTM3bDcuNzQwNjMgMGM1LjU2OTAzLDAgMzIuNzY4Niw3LjE4NjQ1IDM3LjE1NjksOS4yOTI3OSAtMS4wMDAzNiwxMi4wMjQ1IC00LjEyNzIzLDI0LjAxNDYgLTkuNTU4NiwzMi4yNTcyIC0zLjcyMTM5LDUuNjQ3MzUgLTE2LjIxODIsMjEuMjk5NSAtMjEuNDA1MSwxOC44NTQ5em0tMTUuNDgyNCAtODUuMTg2MWMwLC0zLjQ3MjE5IDEuMjI1ODMsLTMuMzk5OCAzLjA5NzIsLTYuMTk1NTlsNi4xMzI2OSAxLjczODQ3IC0xLjgzMjIxIDkuMDUzMDggMy40NDAxNSAwLjA1MTAyNjcgMS4xMzMyNyAtNy44MjM2OWMxLjk4NTI5LC0wLjY3NTIxMyA3LjY1ODc1LC0zLjAxODg4IDkuNzAzMzcsLTMuMDE4ODggNC4wMTIxMiwwIDEuNTkxMzIsMS4wMzcxNSA3Ljc0MTgxLDEuNTQ5NzlsLTEuODgwODcgMTAuNzc4NSAzLjQyODI4IDAuMDYyODkzMyAzLjI3NDAxIC0xMC43NzczYzYuOTcxNjcsLTAuMjI0MjggNS4wMTI0OCwtMS42MTM4NyAxMC42NTk4LC0xLjYxMzg3IDEwLjY2ODEsMCAyMS42NzQ1LDQuMjQ0NzEgMjEuNjc0NSwxNS40ODg0IDAsMy44OTM0NSAtMTUuNDY4MiwxNy4wMzgyIC0xOC41NzczLDIxLjY4NCAtNS4xNjc5MywtMi40ODAxMyAtMzEuODU3MywtOS4yOTI3OSAtMzcuMTU2OSwtOS4yOTI3OWwtNy43NDA2MyAwYy0wLjYyNTM3MywtNy41MDkyMyAtMy4wOTcyLC05LjcwOTMxIC0zLjA5NzIsLTE4LjU4NTZsMCAtMy4wOTgzOXptLTEuNTQ3NDEgMTcuMDM3bDAgMy4wOTgzOWMwLDIxLjk1NjkgLTE3LjAyOTksMjYuMzQ5OSAtMTcuMDI5OSw1MS4xMTA5bDAgNy43NDQxOWMwLDMuNTY4MzEgMS4wNzYzMSw0LjY0Njk5IDQuNjQzNDMsNC42NDY5OWwzLjA5NzIgMGM5LjkwMTU1LDAgMTIuNDc2NiwtMzQuNjEwMyAyNy44Njc3LC0zOC43MjA5IDAuODA4MTIsMy40NzMzNyAxLjU0NzQxLDMuNTYxMTkgMS41NDc0MSw3Ljc0NDE5bDAgOS4yOTI3OWMwLDYuNTY4MiAtNy43NDA2MywxNi42MDc0IC03Ljc0MDYzLDIxLjY4NCAwLDIuOTkxNTkgMi43NjAxOSw2LjE5NDQgNC42NDQ2MSw2LjE5NDQgMTEuNzU4NywwIDI4LjYwMjIsLTIzLjY2ODEgMzAuNjY1OCwtMzQuMzcxOCAyLjgyMDcxLC0xNC42MjU3IC0xLjI1NTQ5LC0xNC40NzYxIDcuNDE0MjksLTI1LjEwNzUgNC45MjExMSwtNi4wMzUzOSAxNC41NTgsLTkuODA0MjQgMTQuNTU4LC0xOS41MWwwIC05LjI5Mzk3YzAsLTYuMTMzODggLTE1LjM0ODMsLTEwLjkzNTEgLTIxLjY2ODUsLTEwLjQ1NjlsLTI0Ljc3MDUgMC41NTE4IC0xOC41ODQ0IC0wLjkzNjI4Yy0xMi41NzA0LDAuMDg3ODEzMyAtNC42NDQ2MSwxNi4zNjI5IC00LjY0NDYxLDI2LjMyOTh6Ii8+DQogICA8cGF0aCBpZD0iXzQ2MzQwOTIwIiBjbGFzcz0iZmlsMCIgZD0iTTM1LjIwNzIgOTUuNDk5NGM1LjE4NjkyLDIuNDQ0NTMgMTcuNjgzNywtMTMuMjA3NiAyMS40MDUxLC0xOC44NTQ5IDUuNDMxMzcsLTguMjQyNTkgOC41NTgyNCwtMjAuMjMyNyA5LjU1ODYsLTMyLjI1NzIgLTQuMzg4MjksLTIuMTA2MzMgLTMxLjU4NzksLTkuMjkyNzkgLTM3LjE1NjksLTkuMjkyNzlsLTcuNzQwNjMgMGMtMC40MTg4OTMsMTguODM0OCAtMTcuMDI5OSwyNS41NjA4IC0xNy4wMjk5LDQ4LjAxMzdsMCA3Ljc0NDE5YzEzLjY3MjgsLTEuMTM4MDEgMTYuNDgwNCwtNDAuMjY5NSAzMi41MTIzLC00MC4yNjk1IDMuNDEyODUsMCA0LjY0MzQzLDguMjc4MTkgNC42NDM0MywxMi4zOTEybDAgMTIuMzljMCw4LjI5NDggLTguNzM2MjQsMTQuNzMzNyAtNi4xOTIwMywyMC4xMzU0eiIvPg0KICA8L2c+DQogPC9nPg0KPC9zdmc+DQo=" style="visibility:hidden">
+                        <img id="imgMolarGif" class="molar" src="data:image/gif;base64,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">
+                    </div>
+                    
+                    <div id="divImgOverflow" class="divImgOverflow">
+                        <img id="imgRelat" src="imgRelat.jpg" style="position: relative; z-index: 0; width: 363px; height: 400px; filter: contrast(100%) brightness(100%);" data-imgserial="41370-2" data-imgres="300" data-imgmag="0" data-imgfatorconv="1">
+                        <svg id="svgLaudoElems" style="width: 363px; height: 400px; top: 0px; left: 0px;">
+                            <g id="gLaudoElems" transform="scale(0.17318702290076335)">
+                            <g id="gMedida0" data-elemSN="0" data-tipo="14" data-tipoResult="0" data-printable="true" data-indexType="0" data-indexStr=""><circle id="medida0" class="med" style="stroke:#56ff4a; fill:#56ff4a" display="none"></circle><text id="legMedida0" style="font-size:76.87041564792176;" class="leg" fill="#56ff4a" display="none"></text></g><g id="gMedida1" data-elemSN="1" data-tipo="5" data-tipoResult="0" data-printable="true" data-indexType="1" data-indexStr=""><circle id="medida1" class="med" style="stroke:#56ff4a; fill:#56ff4a" cx="456.17633056640625" cy="363.91595458984375" r="236.99903198467922"></circle><text id="legMedida1" style="font-size:76.87041564792176;" class="leg" fill="#56ff4a" x="558.3111572265625" y="594.3157348632812">1</text></g><g id="gMedida2" data-elemSN="2" data-tipo="5" data-tipoResult="0" data-printable="true" data-indexType="1" data-indexStr=""><circle id="medida2" class="med" style="stroke:#56ff4a; fill:#56ff4a" cx="937.9805297851562" cy="758.5853881835938" r="309.91736170574865"></circle><text id="legMedida2" style="font-size:76.87041564792176;" class="leg" fill="#56ff4a" x="1209.2593994140625" y="594.3157348632812">2</text></g><g id="gMedida3" data-elemSN="3" data-tipo="4" data-tipoResult="0" data-printable="true" data-indexType="1" data-indexStr=""><rect id="medida3" class="med selMed" style="stroke:#56ff4a; fill:#56ff4a" x="1496.66845703125" y="374.1671142578125" width="287.0323486328125" height="420.29730224609375"></rect><text id="legMedida3" style="font-size:76.87041564792176;" class="leg" fill="#56ff4a" x="1798.7008056640625" y="804.4644165039062">3</text></g></g>
+                        </svg>                 
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="176mm" height="86mm" style="shape-rendering: geometricprecision; text-rendering: geometricprecision; fill-rule: evenodd; clip-rule: evenodd; position: absolute; top: 0px; left: 0px; border: 0px solid rgb(0, 0, 0); z-index: 1; display: none; width: 363px; height: 400px;" viewBox="0 0 176 86" xmlns:xlink="http://www.w3.org/1999/xlink" id="svgOdontograma">
+     
+    <defs>
+        <style type="text/css">
+            g[id^="dente"] {
+                transform : scale(1, 1);  /* pra voltar ao normal qd tirar a classe denteHover */                
+                transform-origin : 50% 50%;                
+                transition : transform .1s, opacity .1s;
+            }
+            
+            g[id^="dente"].denteHover {
+                transition : transform .3s ease-in-out, opacity .3s;
+                transform : scale(1.4, 1.4);
+            }            
+            
+            g[id^="dente"].denteHover.denteAusente {
+                opacity : 0.6;
+            }
+
+            .estruturaOutline {
+                fill : #7D7D7D;
+            }
+                
+            .estrutura {
+                fill : #FFF;
+                opacity : 0;
+            }
+            
+            .denteOutline {
+                fill : #918C71;
+                opacity : 0.9;
+            }    
+            
+            .dente {
+                fill : #FCF4E3;
+            }
+
+            .denteAusente {
+                opacity : 0.3;
+            }
+            .denteAusente path[class="dente"], 
+            .denteAusente polygon[class="dente"] {
+                fill : #FFF;
+            }
+            
+            .regiao {
+                /* filter:url(#regiaoFilter); */
+                opacity : 0.8;
+            }            
+            .regiao path, 
+            .regiao polygon {
+                fill : #FACFCF;
+                stroke : #FACFCF;
+                stroke-width: 2px;
+            }
+            
+            /* ref: http://www.quirksmode.org/css/selectors/mobile.html 
+                    http://code.tutsplus.com/tutorials/the-30-css-selectors-you-must-memorize--net-16048 */
+            .selDente {
+                /* filter:url(#f1); */
+            }            
+            .selDente path[class="dente"], 
+            .selDente polygon[class="dente"] {
+                fill : #FFBAB0;
+            }            
+            .selDente path[class="denteOutline"], 
+            .selDente polygon[class="denteOutline"] {
+                fill : #000;
+                opacity : 0.6;
+            }
+            
+            .legFont {
+                font-family : Arial; 
+                font-size   : 3px; 
+                fill        : black; 
+            }
+            
+            @media print {
+                .dente {
+                    fill : #F0E4C5;
+                }
+
+                .denteOutline {
+                    fill : #000;
+                    opacity : 0.8;
+                }    
+                
+                .denteAusente {
+                    opacity : 0.5;
+                }
+                
+                .regiao {
+                    opacity : 1;
+                }
+                
+                .selDente path[class="dente"], 
+                .selDente polygon[class="dente"] {
+                    fill : #F28777;
+                }                
+                .selDente path[class="denteOutline"], 
+                .selDente polygon[class="denteOutline"] {
+                    fill : #000;
+                    opacity : 0.9;
+                }                
+            }
+        </style>
+        
+        <filter id="f1">
+            <feOffset in="SourceGraphic" dx="-0.3" dy="0.3"></feOffset>
+            <feGaussianBlur stdDeviation="0.2" result="offsetBlur"></feGaussianBlur>
+            <feColorMatrix type="matrix" values="1 0 0 0 0, 0 0 0 0 0, 0 0 0 0 0, 0 0 0 0.6 0" result="red"></feColorMatrix>
+            <feBlend in="SourceGraphic" in2="offsetBlur" mode="normal"></feBlend> 
+        </filter>
+        
+        <filter id="regiaoFilter">
+            <feGaussianBlur stdDeviation="0.8" result="blur"></feGaussianBlur>
+            <feColorMatrix type="matrix" values="1 0 0 0 0, 0 0 0 0 0, 0 0 0 0 0, 0 0 0 0.6 0" result="red"></feColorMatrix>
+            <feBlend in="SourceGraphic" in2="red" mode="multiply"></feBlend> 
+        </filter>
+    </defs>
+        
+  
+  <rect id="hoverRect" rx="2" ry="2" class="hoverRect" style="display:none;"></rect>  
+
+</svg>                </div><br>
+                
+                <table id="tbRelat" class="tbRelat" width="100%" style="cursor: default;">
+                    <thead id="theadRelat" style="font:bold 12px Verdana; color:#aaa;"><tr>
+                        <th scope="col" width="60">Índice</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col" width="130">Medida</th>
+                    </tr></thead>
+
+                    <tbody id="tbBodyRelat">
+                    <tr id="trElem0" data-elemsn="0" data-dentes=""><td id="tdDescElem0" class="editable mce-content-body" colspan="3" contenteditable="false" spellcheck="false" style="position: relative;"><p><br data-mce-bogus="1"></p></td></tr><tr id="trElem1" data-elemsn="1" data-dentes=""><td id="tdIndexElem1" contenteditable="false" style="cursor: auto;">1</td><td id="tdDescElem1" class="editable mce-content-body" contenteditable="false" spellcheck="false" style="position: relative; font-size: 12px; font-family: Verdana, Geneva, sans-serif;"><p>sdfsdfsdfsdf</p><p><br data-mce-bogus="1"></p></td><td id="tdResultElem1" style="cursor: default; user-select: none;" contenteditable="false"></td></tr><tr id="trElem2" data-elemsn="2" data-dentes=""><td id="tdIndexElem2" contenteditable="false" style="cursor: auto;">2</td><td id="tdDescElem2" class="editable mce-content-body" contenteditable="false" spellcheck="false" style="position: relative; font-size: 12px; font-family: Verdana, Geneva, sans-serif;"><p>fghfghgfhgfh</p></td><td id="tdResultElem2" style="cursor: default; user-select: none;" contenteditable="false"></td></tr><tr id="trElem3" data-elemsn="3" data-dentes=""><td id="tdIndexElem3" contenteditable="false" style="cursor: auto;">3</td><td id="tdDescElem3" class="editable mce-content-body" contenteditable="false" spellcheck="false" style="position: relative; font-size: 12px; font-family: Verdana, Geneva, sans-serif;"><p>fghfghfghf</p></td><td id="tdResultElem3" style="cursor: default; user-select: none;" contenteditable="false"></td></tr></tbody>
+                </table>
+                <br>
+                
+                                
+                <div id="divAss" class="">
+                    <div id="divImgAss" style="display:none;">
+                        <img id="imgAss">
+                        <img id="btCancelAss" src="" title="Desabilita a assinatura para este laudo (será reativada ao recarregar a página principal)">
+                    </div>
+                    <div id="divUploadAss" title="Escolher imagem para usar de assinatura" style="display: none;">
+                        <span id="spanAss">Assinatura<br>(larg.: 260px / tam.: 300Kb max.)</span>
+                        <div id="divBtUploadAss">
+                            <img id="btUploadAss" src="" width="20" height="20">
+                            <input type="file" id="inputUploadAss" accept="image/*">
+                        </div>
+                    </div>                
+                </div>
+                <!--/ILAUDO-->            
+                <br>
+                <div id="divRod" class="divRodFinal">            
+                    <span contenteditable="true" id="spanRodText">diego.radiomemory.com.br</span><br>
+                    <span></span>
+                </div>
+            </div>  <!-- divInnerPage -->
+        </div>  <!-- divScreenRelat -->
+
+<!-- ====================================================================================== -->
+        
+        <div id="divPrintRelat" align="center"></div>  <!-- divPrintRelat -->        
+    
+   
+
+
+</body>
+    <script src="script.js"></script>
+  </body>
+</html>
+<script>
+
+
+
+const Elem = e => ({
+  toJSON : () => ({
+    tagName: 
+      e.tagName,
+    textContent:
+      e.textContent,
+    attributes:
+      Array.from(e.attributes, ({name, value}) => [name, value]),
+    children:
+      Array.from(e.children, Elem)
+  })
+})
+
+// html2json :: Node -> JSONString
+const html2json = e =>
+  JSON.stringify(Elem(e), null, '  ')
+  total = [];
+//console.log(html2json(document.querySelector('#tbBodyRelat')))
+const value = html2json(document.querySelector('#tbBodyRelat'));
+const mydata = JSON.parse(value);
+for (i=1;i < mydata.children.length;i++){
+   let find = {
+   indice: mydata.children[i].children[0].textContent,
+   descricao: mydata.children[i].children[1].textContent, 
+   medida: mydata.children[i].children[2].textContent
+ }
+ total.push(find)
+ 
+}
+//console.log(total)
+//console.log(mydata.children[2].children[1].textContent)
+
+
+let paciente = document.getElementById("spanCabNomePac").textContent;
+let idade = document.getElementById("spanCabNascIdade").textContent;
+let doutor = document.getElementById("spanCabIndic").textContent;
+let os = document.getElementById("spanCabOS").textContent;
+let sexo = document.getElementById("spanCabSexo").textContent;
+let data = document.getElementById("spanDataDoc").textContent;
+let clinica = document.getElementById("spanCabClinica").textContent;
+let exame = document.getElementById("spanCabTipoExame").textContent;
+let logo = document.getElementById("imgMolarSvg").src;
+let dente = document.getElementById("imgMolarGif").src;
+let assinatura = document.getElementById("btUploadAss").textContent;
+let textofinal = document.getElementById("spanRodText").textContent;
+
+let result = {
+  paciente: paciente,
+  idade: idade,
+  doutor: doutor,
+  os: os,
+  sexo: sexo,
+  data: data,
+  clinica: clinica,
+  exame: exame,
+  logo: logo,
+  dente: dente,
+  assinatura: assinatura,
+  textofinal: textofinal,
+  valores:total
+  };
+
+console.log(result);
+
+
+</script>
